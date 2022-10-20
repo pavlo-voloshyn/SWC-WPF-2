@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="PP.UI.Views.OrdersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:enums="clr-namespace:PP.Domain.Models.Enums;assembly=PP.Domain"
+             xmlns:local="clr-namespace:PP.UI.Views" 
+             xmlns:viewModels="clr-namespace:PP.UI.ViewModels" xmlns:enumtools="clr-namespace:PP.Domain.Shared;assembly=PP.Domain"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModels:OrdersViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft" >
+            <Button Style="{StaticResource AddButton}"  Padding="10 0" Command="{Binding Path=DataContext.AddOrderCommand,
+                                                            RelativeSource={RelativeSource AncestorType={x:Type UserControl},
+                                                            Mode=FindAncestor}}">Add</Button>
+        </StackPanel>
+        <StackPanel DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" 
+                    Grid.Row="1" Orientation="Horizontal" 
+                    FlowDirection="RightToLeft" >
+            <Button Style="{StaticResource ViewButton}"   Padding="10 0" Command="{Binding BackCommand}">Back</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <DataGrid ItemsSource="{Binding Orders}" 
+                      AutoGenerateColumns="False" 
+                      CanUserAddRows="False" 
+                      CanUserDeleteRows="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="1*" Header="№"  Binding="{Binding Id}"/>
+                    <DataGridComboBoxColumn Width="4*" Header="Service" 
+                                                    SelectedValueBinding="{Binding ServiceType, Mode=TwoWay}"
+                                     ItemsSource="{Binding Source={enumtools:EnumBindingSource {x:Type enums:ServiceType}}}">
+                    </DataGridComboBoxColumn>
+                    <DataGridCheckBoxColumn Width="4*" Header="Urgent" Binding="{Binding IsUrgent}" />
+                    <DataGridComboBoxColumn Width="4*" Header="Status" 
+                                                    SelectedValueBinding="{Binding Status, Mode=TwoWay}"
+                                     ItemsSource="{Binding Source={enumtools:EnumBindingSource {x:Type enums:Status}}}">
+                    </DataGridComboBoxColumn>
+                    <DataGridTextColumn IsReadOnly="True" Width="6*" Header="Start Date" Binding="{Binding DateCreated}" />
+                    <DataGridTextColumn Width="6*" Header="Paspport №" Binding="{Binding PassportId}" />
+                    <DataGridTemplateColumn Width="4*" Header="Actions">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource UpdateButton}" Command="{Binding UpdateOrderCommand}">Update</Button>
+                                    <Button Style="{StaticResource DeleteButton}" Command="{Binding Path=DataContext.DeleteOrderCommand,
+                                                         RelativeSource={RelativeSource AncestorType={x:Type UserControl},Mode=FindAncestor}}" 
+                                        CommandParameter="{Binding Id}">Delete</Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

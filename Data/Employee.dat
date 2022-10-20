@@ -1,0 +1,16 @@
+[
+  {
+    "FirstName": "Slavik",
+    "LastName": "Zozuk",
+    "ERole": 2,
+    "Office": "Lviv DSMU",
+    "Id": 1
+  },
+  {
+    "FirstName": "Dmytro",
+    "LastName": "Melnyk",
+    "ERole": 0,
+    "Office": "IF DSMU",
+    "Id": 2
+  }
+]

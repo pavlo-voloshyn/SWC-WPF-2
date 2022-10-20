@@ -1,0 +1,28 @@
+﻿<Application x:Class="PP.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PP.UI"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="DeleteButton" TargetType="Button">
+            <Setter Property="Background" Value="#FD151B" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="Auto"/>
+        </Style>
+        <Style x:Key="UpdateButton" TargetType="Button">
+            <Setter Property="Background" Value="#FD1" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="Auto"/>
+        </Style> 
+        <Style x:Key="AddButton" TargetType="Button">
+            <Setter Property="Background" Value="#849324" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="Auto"/>
+        </Style>
+        <Style x:Key="ViewButton" TargetType="Button">
+            <Setter Property="Background" Value="#437F97" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="Auto"/>
+        </Style>
+    </Application.Resources>
+</Application>
